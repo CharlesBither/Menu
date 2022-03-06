@@ -1,0 +1,9 @@
+name: Menu
+version: '${project.version}'
+main: tech.secretgarden.menu.Menu
+api-version: 1.18
+authors: [ ChuckLingBao ]
+description: Guide to Secret Garden
+commands:
+  menu:
+    description: Your guide to Secret Garden
