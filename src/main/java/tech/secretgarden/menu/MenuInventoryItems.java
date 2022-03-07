@@ -1,12 +1,11 @@
 package tech.secretgarden.menu;
 
-import com.sun.tools.javac.jvm.Items;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class MenuInventoryItems {
 
     public ItemStack spawnEgg() {
         ItemStack spawnEgg = new ItemStack(Material.PARROT_SPAWN_EGG);
-        ItemMeta meta = spawnEgg().getItemMeta();
+        ItemMeta meta = spawnEgg.getItemMeta();
         meta.setDisplayName(ChatColor.RED + "Pets");
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.LIGHT_PURPLE + "Open your pet menu");
@@ -36,7 +35,7 @@ public class MenuInventoryItems {
 
     public ItemStack zombieHead() {
         ItemStack zombieHead = new ItemStack(Material.ZOMBIE_HEAD);
-        ItemMeta meta = zombieHead().getItemMeta();
+        ItemMeta meta = zombieHead.getItemMeta();
         meta.setDisplayName(ChatColor.DARK_RED + "Death Chest");
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.LIGHT_PURPLE + "Open your Death");
@@ -96,6 +95,15 @@ public class MenuInventoryItems {
     }
 
     public ItemStack star() {
-        
+        ItemStack star = new ItemStack(Material.NETHER_STAR);
+        ItemMeta meta = star.getItemMeta();
+        meta.setDisplayName("Back");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.LIGHT_PURPLE + "Go Back");
+        meta.setLore(lore);
+        meta.addEnchant(Enchantment.DURABILITY, 1, true);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        star.setItemMeta(meta);
+        return star;
     }
 }
