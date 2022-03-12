@@ -1,9 +1,5 @@
 package tech.secretgarden.menu;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,15 +9,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-
-import static org.bukkit.Bukkit.createInventory;
 
 public class EventListener implements Listener {
     private final Compass compass = new Compass();
     private final MenuInventoryItems menuInventoryItems = new MenuInventoryItems();
     private final WarpInventoryItems warpInventoryItems = new WarpInventoryItems();
+    private final MediaInventoryItems mediaInventoryItems = new MediaInventoryItems();
+    private final Inventories inventories = new Inventories();
 
     @EventHandler
     public void interact(PlayerInteractEvent e) {
@@ -29,86 +24,56 @@ public class EventListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
         if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
                 item.isSimilar(compass.initialize())) {
-            Inventory menuInventory = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Menu");
-
-            for (int i = 0; i < menuInventory.getSize(); i++) {
-                if (i == 9) { menuInventory.setItem(9, menuInventoryItems.compass()); }
-                else if (i == 10) { menuInventory.setItem(i, menuInventoryItems.spawnEgg()); }
-                else if (i == 11) { menuInventory.setItem(i, menuInventoryItems.zombieHead()); }
-                else if (i == 12) { menuInventory.setItem(i, menuInventoryItems.goldenShovel()); }
-                else if (i == 13) { menuInventory.setItem(i, menuInventoryItems.greenGlass()); }
-                else if (i == 14) { menuInventory.setItem(i, menuInventoryItems.book()); }
-                else if (i == 15) { menuInventory.setItem(i, menuInventoryItems.map()); }
-                else if (i == 26) { menuInventory.setItem(i, menuInventoryItems.star()); }
-                else {
-                    menuInventory.setItem(i, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
-                }
-            }
-            player.openInventory(menuInventory);
-
-            /*
-            //slot 9 id second row first column
-            menuInventory.setItem(9, menuInventoryItems.compass());
-            menuInventory.setItem(10, menuInventoryItems.spawnEgg());
-            menuInventory.setItem(11, menuInventoryItems.zombieHead());
-            menuInventory.setItem(12, menuInventoryItems.goldenShovel());
-            menuInventory.setItem(13, menuInventoryItems.greenGlass());
-            menuInventory.setItem(14, menuInventoryItems.book());
-            menuInventory.setItem(15, menuInventoryItems.map());
-            player.openInventory(menuInventory);
-
-             */
+            player.openInventory(inventories.menuInventory());
         }
     }
 
     @EventHandler
     public void click(InventoryClickEvent e) {
         if (e.getClickedInventory() != null && e.getCurrentItem() != null) {
-            System.out.println("test");
             Inventory inventory = e.getClickedInventory();
             Player player = (Player) e.getWhoClicked();
             if (e.getView().getTitle().contains("Menu") && e.getView().getTopInventory().equals(inventory)) {
-                System.out.println("test1");
 
                 //------------------------------------------ MENU ITEMS ---------------------------------------------------------------
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.compass())) {
-                    System.out.println("you clicked a compass");
                     //If player click on warps button
                     e.setCancelled(true);
-                    Inventory warpInventory = Bukkit.createInventory(null, 27,ChatColor.GREEN + "Warps");
-
-                    for (int i = 0; i < warpInventory.getSize(); i++) {
-                        if (i == 9) { warpInventory.setItem(9, warpInventoryItems.spawn()); }
-                        else if (i == 10) { warpInventory.setItem(i, warpInventoryItems.shop()); }
-                        else if (i == 11) { warpInventory.setItem(i, warpInventoryItems.survival()); }
-                        else if (i == 12) { warpInventory.setItem(i, warpInventoryItems.hardcore()); }
-                        else if (i == 13) { warpInventory.setItem(i, warpInventoryItems.resource()); }
-                        else if (i == 26) { warpInventory.setItem(i, menuInventoryItems.star()); }
-                        else {
-                            warpInventory.setItem(i, new ItemStack(Material.GRAY_STAINED_GLASS_PANE));
-                        }
-                    }
-                    player.openInventory(warpInventory);
+                    player.openInventory(inventories.warpInventory());
                 }
-                if (e.getCurrentItem().isSimilar(new ItemStack(Material.PARROT_SPAWN_EGG))) {
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.spawnEgg())) {
                     //pet menu
                     e.setCancelled(true);
-                    player.performCommand("pet");
+                    player.performCommand("pet gui");
                 }
-                if (e.getCurrentItem().isSimilar(new ItemStack(Material.ZOMBIE_HEAD))) {
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.zombieHead())) {
                     //deathchest
                     e.setCancelled(true);
                     player.performCommand("dc list");
                 }
-                if (e.getCurrentItem().isSimilar(new ItemStack(Material.GOLDEN_SHOVEL))) {
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.goldenShovel())) {
                     //claim kit
                     e.setCancelled(true);
                     player.performCommand("kit claim");
                 }
-                if (e.getCurrentItem().isSimilar(new ItemStack(Material.GREEN_STAINED_GLASS_PANE))) {
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.greenGlass())) {
                     //Scoreboard toggle
                     e.setCancelled(true);
                     player.performCommand("tm scoreboard toggle");
+                }
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.book())) {
+                    e.setCancelled(true);
+                    player.performCommand("vote");
+                }
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.map())) {
+                    e.setCancelled(true);
+
+                    player.openInventory(inventories.mediaInventory());
+
+                }
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
+                    e.setCancelled(true);
+                    e.getWhoClicked().closeInventory();
                 }
                 else {
                     e.setCancelled(true);
@@ -136,6 +101,42 @@ public class EventListener implements Listener {
                 if (e.getCurrentItem().isSimilar(warpInventoryItems.resource())) {
                     e.setCancelled(true);
                     player.performCommand("warp resource");
+                }
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
+                    e.setCancelled(true);
+                    player.openInventory(inventories.menuInventory());
+                }
+            }
+            //---------------------------------------- END OF WARP ITEMS -----------------------------------------------------
+            //---------------------------------------- MEDIA ITEMS -------------------------------------------------------------
+            if (e.getView().getTitle().contains("Social Media") && e.getView().getTopInventory().equals(inventory)) {
+                if (e.getCurrentItem().isSimilar(mediaInventoryItems.initializeDiscord())) {
+                    e.setCancelled(true);
+                    player.spigot().sendMessage(mediaInventoryItems.discordLink());
+                    e.getWhoClicked().closeInventory();
+                }
+                if (e.getCurrentItem().isSimilar(mediaInventoryItems.initializeWebsite())) {
+                    e.setCancelled(true);
+                    player.spigot().sendMessage(mediaInventoryItems.websiteLink());
+                    e.getWhoClicked().closeInventory();
+                }
+                if (e.getCurrentItem().isSimilar(mediaInventoryItems.initializeIg())) {
+                    e.setCancelled(true);
+                    player.spigot().sendMessage(mediaInventoryItems.igLink());
+                    e.getWhoClicked().closeInventory();
+                }
+                if (e.getCurrentItem().isSimilar(mediaInventoryItems.initializeFacebook())) {
+                    e.setCancelled(true);
+                    player.spigot().sendMessage(mediaInventoryItems.facebookLink());
+                    e.getWhoClicked().closeInventory();
+                }
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
+                    e.setCancelled(true);
+                    player.openInventory(inventories.menuInventory());
+                }
+
+                else {
+                    e.setCancelled(true);
                 }
             }
         }
