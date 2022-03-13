@@ -22,9 +22,10 @@ public class EventListener implements Listener {
     public void interact(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
+        String uuid = player.getUniqueId().toString();
         if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
                 item.isSimilar(compass.initialize())) {
-            player.openInventory(inventories.menuInventory());
+            player.openInventory(inventories.menuInventory(uuid));
         }
     }
 
@@ -33,9 +34,15 @@ public class EventListener implements Listener {
         if (e.getClickedInventory() != null && e.getCurrentItem() != null) {
             Inventory inventory = e.getClickedInventory();
             Player player = (Player) e.getWhoClicked();
+            String uuid = player.getUniqueId().toString();
             if (e.getView().getTitle().contains("Menu") && e.getView().getTopInventory().equals(inventory)) {
 
                 //------------------------------------------ MENU ITEMS ---------------------------------------------------------------
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.initializeStash()) || e.getCurrentItem().isSimilar(menuInventoryItems.initializeStashWithItems())) {
+                    //stash/chest button
+                    e.setCancelled(true);
+                    player.performCommand("stash");
+                }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.compass())) {
                     //If player click on warps button
                     e.setCancelled(true);
@@ -104,7 +111,7 @@ public class EventListener implements Listener {
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
                     e.setCancelled(true);
-                    player.openInventory(inventories.menuInventory());
+                    player.openInventory(inventories.menuInventory(uuid));
                 }
             }
             //---------------------------------------- END OF WARP ITEMS -----------------------------------------------------
@@ -132,7 +139,7 @@ public class EventListener implements Listener {
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
                     e.setCancelled(true);
-                    player.openInventory(inventories.menuInventory());
+                    player.openInventory(inventories.menuInventory(uuid));
                 }
 
                 else {

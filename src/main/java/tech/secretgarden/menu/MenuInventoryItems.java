@@ -106,4 +106,26 @@ public class MenuInventoryItems {
         star.setItemMeta(meta);
         return star;
     }
+
+    public ItemStack initializeStash() {
+        ItemStack stash = new ItemStack(Material.CHEST);
+        ItemMeta meta = stash.getItemMeta();
+        meta.setDisplayName(ChatColor.DARK_PURPLE + "Stash");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.LIGHT_PURPLE + "Open your Stash");
+        meta.setLore(lore);
+        stash.setItemMeta(meta);
+        return stash;
+    }
+
+    public ItemStack initializeStashWithItems() {
+        ItemStack stash = new ItemStack(Material.ENDER_CHEST);
+        ItemMeta meta = stash.getItemMeta();
+        meta.setDisplayName(ChatColor.DARK_PURPLE + "Stash");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.GOLD + "There are items in your stash!");
+        meta.setLore(lore);
+        stash.setItemMeta(meta);
+        return stash;
+    }
 }

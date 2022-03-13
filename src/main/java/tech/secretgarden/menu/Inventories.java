@@ -3,7 +3,6 @@ package tech.secretgarden.menu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -12,12 +11,21 @@ public class Inventories {
     private final MenuInventoryItems menuInventoryItems = new MenuInventoryItems();
     private final WarpInventoryItems warpInventoryItems = new WarpInventoryItems();
     private final MediaInventoryItems mediaInventoryItems = new MediaInventoryItems();
+    private final StashMethods stashMethods = new StashMethods();
 
-    public Inventory menuInventory() {
+    public Inventory menuInventory(String uuid) {
         Inventory inventory = Bukkit.createInventory(null, 27, ChatColor.DARK_PURPLE + "Menu");
+        ItemStack stashButton;
+
+        if (stashMethods.stashHasItems(uuid)) {
+            stashButton = menuInventoryItems.initializeStashWithItems();
+        } else {
+            stashButton = menuInventoryItems.initializeStash();
+        }
 
         for (int i = 0; i < inventory.getSize(); i++) {
-            if (i == 10) { inventory.setItem(i, menuInventoryItems.compass()); }
+            if (i == 8) { inventory.setItem(i, stashButton); }
+            else if (i == 10) { inventory.setItem(i, menuInventoryItems.compass()); }
             else if (i == 11) { inventory.setItem(i, menuInventoryItems.spawnEgg()); }
             else if (i == 12) { inventory.setItem(i, menuInventoryItems.zombieHead()); }
             else if (i == 13) { inventory.setItem(i, menuInventoryItems.goldenShovel()); }
