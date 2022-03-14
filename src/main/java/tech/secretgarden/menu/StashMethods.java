@@ -2,14 +2,11 @@ package tech.secretgarden.menu;
 
 import org.bukkit.inventory.Inventory;
 import tech.secretgarden.stash.GetMethods;
-import tech.secretgarden.stash.Stash;
 
-import java.util.UUID;
 
 public class StashMethods {
 
-    private Stash stash = Stash.getInstance();
-    private GetMethods getMethods = new GetMethods();
+    private final GetMethods getMethods = new GetMethods();
 
     public boolean stashHasItems(String uuid) {
         int i = 0;

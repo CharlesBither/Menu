@@ -2,11 +2,9 @@ package tech.secretgarden.menu;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class WarpInventoryItems {

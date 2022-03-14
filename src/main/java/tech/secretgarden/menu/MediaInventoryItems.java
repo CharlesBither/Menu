@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import net.md_5.bungee.api.chat.TextComponent;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class MediaInventoryItems {
