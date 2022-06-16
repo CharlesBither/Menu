@@ -27,7 +27,7 @@ public class MenuInventoryItems {
         ItemMeta meta = spawnEgg.getItemMeta();
         meta.setDisplayName(ChatColor.RED + "Pets");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Open your pet menu");
+        lore.add(ChatColor.DARK_RED + "Temporarily Disabled");
         meta.setLore(lore);
         spawnEgg.setItemMeta(meta);
         return spawnEgg;
@@ -62,8 +62,7 @@ public class MenuInventoryItems {
         ItemMeta meta = greenGlass.getItemMeta();
         meta.setDisplayName(ChatColor.DARK_GREEN + "Toggle scoreboard");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Show/hide the");
-        lore.add(ChatColor.LIGHT_PURPLE + "scoreboard");
+        lore.add(ChatColor.DARK_RED + "Temporarily Disabled");
         meta.setLore(lore);
         greenGlass.setItemMeta(meta);
         return greenGlass;

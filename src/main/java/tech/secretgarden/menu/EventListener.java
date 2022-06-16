@@ -51,7 +51,7 @@ public class EventListener implements Listener {
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.spawnEgg())) {
                     //pet menu
                     e.setCancelled(true);
-                    player.performCommand("pet gui");
+                    player.sendMessage("This does not work right now...");
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.zombieHead())) {
                     //deathchest
@@ -66,7 +66,7 @@ public class EventListener implements Listener {
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.greenGlass())) {
                     //Scoreboard toggle
                     e.setCancelled(true);
-                    player.performCommand("tm scoreboard toggle");
+                    player.sendMessage("This does not work right now...");
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.book())) {
                     e.setCancelled(true);

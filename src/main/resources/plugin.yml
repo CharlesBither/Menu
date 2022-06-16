@@ -1,7 +1,7 @@
 name: Menu
 version: '${project.version}'
 main: tech.secretgarden.menu.Menu
-api-version: 1.18
+api-version: 1.19
 authors: [ ChuckLingBao ]
 description: Guide to Secret Garden
 commands:
