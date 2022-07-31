@@ -1,5 +1,8 @@
 package tech.secretgarden.menu;
 
+import me.neznamy.tab.api.TabAPI;
+import me.neznamy.tab.api.TabPlayer;
+import me.neznamy.tab.api.scoreboard.ScoreboardManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +20,9 @@ public class EventListener implements Listener {
     private final WarpInventoryItems warpInventoryItems = new WarpInventoryItems();
     private final MediaInventoryItems mediaInventoryItems = new MediaInventoryItems();
     private final Inventories inventories = new Inventories();
+
+    //TAB api
+    TabAPI tab = TabAPI.getInstance();
 
     @EventHandler
     public void interact(PlayerInteractEvent e) {
@@ -51,7 +57,7 @@ public class EventListener implements Listener {
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.spawnEgg())) {
                     //pet menu
                     e.setCancelled(true);
-                    player.sendMessage("This does not work right now...");
+                    player.performCommand("pet");
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.zombieHead())) {
                     //deathchest
@@ -66,7 +72,8 @@ public class EventListener implements Listener {
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.greenGlass())) {
                     //Scoreboard toggle
                     e.setCancelled(true);
-                    player.sendMessage("This does not work right now...");
+                    TabPlayer tabPlayer = tab.getPlayer(e.getWhoClicked().getUniqueId());
+                    tab.getScoreboardManager().toggleScoreboard(tabPlayer, false);
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.book())) {
                     e.setCancelled(true);

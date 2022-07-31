@@ -4,6 +4,7 @@ main: tech.secretgarden.menu.Menu
 api-version: 1.19
 authors: [ ChuckLingBao ]
 description: Guide to Secret Garden
+depend: [TAB]
 commands:
   menu:
     description: Your guide to Secret Garden
