@@ -1,8 +1,7 @@
 package tech.secretgarden.menu;
 
 import org.bukkit.inventory.Inventory;
-import tech.secretgarden.stash.GetMethods;
-
+import tech.secretgarden.stash.Data.GetMethods;
 
 public class StashMethods {
 
