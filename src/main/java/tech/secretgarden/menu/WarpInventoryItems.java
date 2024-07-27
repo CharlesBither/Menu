@@ -13,7 +13,7 @@ public class WarpInventoryItems {
         ItemMeta meta = spawn.getItemMeta();
         meta.setDisplayName(ChatColor.DARK_PURPLE + "Spawn");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "go to spawn");
+        lore.add(ChatColor.LIGHT_PURPLE + "Go to Spawn");
         meta.setLore(lore);
         spawn.setItemMeta(meta);
         return spawn;
@@ -24,7 +24,7 @@ public class WarpInventoryItems {
         ItemMeta meta = shop.getItemMeta();
         meta.setDisplayName(ChatColor.AQUA + "Shop");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Go to the shop");
+        lore.add(ChatColor.LIGHT_PURPLE + "Go to the Shop");
         meta.setLore(lore);
         shop.setItemMeta(meta);
         return shop;
@@ -35,23 +35,22 @@ public class WarpInventoryItems {
         ItemMeta meta = survival.getItemMeta();
         meta.setDisplayName(ChatColor.BLUE + "Survival");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Got to the");
-        lore.add(ChatColor.LIGHT_PURPLE + "Survival world");
+        lore.add(ChatColor.LIGHT_PURPLE + "Go to the");
+        lore.add(ChatColor.LIGHT_PURPLE + "Survival World");
         meta.setLore(lore);
         survival.setItemMeta(meta);
         return survival;
     }
 
-    public ItemStack hardcore() {
-        ItemStack hardcore = new ItemStack(Material.NETHERITE_SWORD);
-        ItemMeta meta = hardcore.getItemMeta();
-        meta.setDisplayName(ChatColor.DARK_GRAY + "Hardcore");
+    public ItemStack crates() {
+        ItemStack crates = new ItemStack(Material.CHEST);
+        ItemMeta meta = crates.getItemMeta();
+        meta.setDisplayName(ChatColor.GOLD + "Crates");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Go to the");
-        lore.add(ChatColor.LIGHT_PURPLE + "Hardcore world");
+        lore.add(ChatColor.LIGHT_PURPLE + "Go to Crates");
         meta.setLore(lore);
-        hardcore.setItemMeta(meta);
-        return hardcore;
+        crates.setItemMeta(meta);
+        return crates;
     }
 
     public ItemStack resource() {
@@ -60,7 +59,19 @@ public class WarpInventoryItems {
         meta.setDisplayName(ChatColor.GREEN + "Resource");
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.LIGHT_PURPLE + "Go to the");
-        lore.add(ChatColor.LIGHT_PURPLE + "Resource world");
+        lore.add(ChatColor.LIGHT_PURPLE + "Resource World");
+        meta.setLore(lore);
+        resource.setItemMeta(meta);
+        return resource;
+    }
+
+    public ItemStack creative() {
+        ItemStack resource = new ItemStack(Material.BRUSH);
+        ItemMeta meta = resource.getItemMeta();
+        meta.setDisplayName(ChatColor.BLUE + "Creative");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.LIGHT_PURPLE + "Go to the");
+        lore.add(ChatColor.LIGHT_PURPLE + "Creative World");
         meta.setLore(lore);
         resource.setItemMeta(meta);
         return resource;

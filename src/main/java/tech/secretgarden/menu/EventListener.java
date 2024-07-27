@@ -2,7 +2,6 @@ package tech.secretgarden.menu;
 
 import me.neznamy.tab.api.TabAPI;
 import me.neznamy.tab.api.TabPlayer;
-import me.neznamy.tab.api.scoreboard.ScoreboardManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,9 +28,9 @@ public class EventListener implements Listener {
         Player player = e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         String uuid = player.getUniqueId().toString();
-        if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) &&
-                item.isSimilar(compass.initialize())) {
-            player.openInventory(inventories.menuInventory(uuid));
+        if (item.hasItemMeta())
+        if ((e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) && item.getItemMeta().hasCustomModelData()) {
+            if (item.getItemMeta().getCustomModelData() == 6669000) { player.openInventory(inventories.menuInventory(uuid)); }
         }
     }
 
@@ -69,7 +68,7 @@ public class EventListener implements Listener {
                     e.setCancelled(true);
                     player.performCommand("kit claim");
                 }
-                if (e.getCurrentItem().isSimilar(menuInventoryItems.greenGlass())) {
+                if (e.getCurrentItem().isSimilar(menuInventoryItems.scoreboard())) {
                     //Scoreboard toggle
                     e.setCancelled(true);
                     TabPlayer tabPlayer = tab.getPlayer(e.getWhoClicked().getUniqueId());
@@ -106,15 +105,19 @@ public class EventListener implements Listener {
                 }
                 if (e.getCurrentItem().isSimilar(warpInventoryItems.survival())) {
                     e.setCancelled(true);
-                    player.performCommand("warp survival");
+                    player.performCommand("warp smp");
                 }
-                if (e.getCurrentItem().isSimilar(warpInventoryItems.hardcore())) {
+                if (e.getCurrentItem().isSimilar(warpInventoryItems.crates())) {
                     e.setCancelled(true);
-                    player.performCommand("warp hardcore");
+                    player.performCommand("warp crates");
                 }
                 if (e.getCurrentItem().isSimilar(warpInventoryItems.resource())) {
                     e.setCancelled(true);
                     player.performCommand("warp resource");
+                }
+                if (e.getCurrentItem().isSimilar(warpInventoryItems.creative())) {
+                    e.setCancelled(true);
+                    player.performCommand("warp creative");
                 }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
                     e.setCancelled(true);
@@ -139,22 +142,15 @@ public class EventListener implements Listener {
                     player.spigot().sendMessage(mediaInventoryItems.igLink());
                     e.getWhoClicked().closeInventory();
                 }
-                if (e.getCurrentItem().isSimilar(mediaInventoryItems.initializeFacebook())) {
-                    e.setCancelled(true);
-                    player.spigot().sendMessage(mediaInventoryItems.facebookLink());
-                    e.getWhoClicked().closeInventory();
-                }
                 if (e.getCurrentItem().isSimilar(menuInventoryItems.star())) {
                     e.setCancelled(true);
                     player.openInventory(inventories.menuInventory(uuid));
                 }
-
                 else {
                     e.setCancelled(true);
                 }
             }
         }
-
     }
 
     @EventHandler

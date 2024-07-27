@@ -57,15 +57,15 @@ public class MenuInventoryItems {
         return goldenShovel;
     }
 
-    public ItemStack greenGlass() {
-        ItemStack greenGlass = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
-        ItemMeta meta = greenGlass.getItemMeta();
+    public ItemStack scoreboard() {
+        ItemStack scoreboard = new ItemStack(Material.OAK_SIGN);
+        ItemMeta meta = scoreboard.getItemMeta();
         meta.setDisplayName(ChatColor.DARK_GREEN + "Toggle scoreboard");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Enable/Disable Scoreboard");
+        lore.add(ChatColor.LIGHT_PURPLE + "Enable/Disable scoreboard");
         meta.setLore(lore);
-        greenGlass.setItemMeta(meta);
-        return greenGlass;
+        scoreboard.setItemMeta(meta);
+        return scoreboard;
     }
 
     public ItemStack book() {

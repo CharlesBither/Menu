@@ -21,6 +21,7 @@ public class Compass {
         menuMeta.setLore(lore);
         menuMeta.addEnchant(Enchantment.DURABILITY, 1, true);
         menuMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        menuMeta.setCustomModelData(6669000);
         compass.setItemMeta(menuMeta);
         return compass;
     }

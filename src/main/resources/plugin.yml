@@ -1,7 +1,7 @@
 name: Menu
 version: '${project.version}'
 main: tech.secretgarden.menu.Menu
-api-version: 1.19
+api-version: '1.20'
 authors: [ ChuckLingBao ]
 description: Guide to Secret Garden
 depend: [TAB]

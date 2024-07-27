@@ -44,17 +44,6 @@ public class MediaInventoryItems {
         return ig;
     }
 
-    public ItemStack initializeFacebook() {
-        ItemStack facebook = new ItemStack(Material.LAPIS_BLOCK);
-        ItemMeta meta = facebook.getItemMeta();
-        meta.setDisplayName(ChatColor.DARK_BLUE + "Facebook");
-        ArrayList<String> lore = new ArrayList<>();
-        lore.add(ChatColor.LIGHT_PURPLE + "Join our Facebook");
-        meta.setLore(lore);
-        facebook.setItemMeta(meta);
-        return facebook;
-    }
-
     public TextComponent websiteLink() {
         TextComponent textComponent = new TextComponent();
         textComponent.setText("Click me to go to www.SecretGarden.tech");
